@@ -4,9 +4,9 @@ This is a simple Node.js server that uses a websocket (websocket.io) to interact
 
 I used [this](https://weworkweplay.com/play/raspberry-pi-nodejs/) tutorial to set up the pi to run when booting up.
 
-How to use:
+How to use:\
 `git clone https://github.com/DCU4/light-switch.git light-switch`\
 `cd light-switch`\
 `npm install`\
-`node app.js`\
+`node app.js`
 
