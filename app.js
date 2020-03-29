@@ -21,15 +21,15 @@
 
 
 var server = require('http').createServer(handler); //require http server, and create server with function handler()
+var io = require('socket.io').listen(server);//require socket.io module and pass the http object (server)
 var fs = require('fs'); //require filesystem module
-// var io = require('socket.io').listen(server);//require socket.io module and pass the http object (server)
-// var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-// var LED04 = new Gpio(4, 'out'); //use GPIO pin 4 as output
-// var LED06 = new Gpio(6, 'out'); //use GPIO pin 4 as output
-// var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
-// //Put all the LED variables in an array
-// var leds = [LED04, LED06];
-// var indexCount = 0; //a counter
+var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+var LED04 = new Gpio(4, 'out'); //use GPIO pin 4 as output
+var LED06 = new Gpio(6, 'out'); //use GPIO pin 4 as output
+var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
+//Put all the LED variables in an array
+var leds = [LED04, LED06];
+var indexCount = 0; //a counter
 
 server.listen(process.env.PORT || 3000, function(){
   console.log('Server started',process.env.PORT );
@@ -51,26 +51,26 @@ function handler (req, res) { //create server
   });
 }
 
-// io.sockets.on('connection', function (socket) {// WebSocket Connection
-//   var lightvalue = 0; //static variable for current status
-//   pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
-//     if (err) { //if an error
-//       console.error('There was an error', err); //output error message to console
-//       return;
-//     }
-//     lightvalue = value;
-//     socket.emit('light', lightvalue); //send button status to client
-//   });
-//   socket.on('light', function(data) { //get light switch status from client
-//     lightvalue = data;
-//     leds.forEach((l,e) => {
-//       console.log(l);
-//       if (lightvalue != l.readSync()) { //only change LED if status has changed
-//         l.writeSync(lightvalue); //turn LED on or off
-//       }
-//     });
-//   });
-// });
+io.sockets.on('connection', function (socket) {// WebSocket Connection
+  var lightvalue = 0; //static variable for current status
+  pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
+    if (err) { //if an error
+      console.error('There was an error', err); //output error message to console
+      return;
+    }
+    lightvalue = value;
+    socket.emit('light', lightvalue); //send button status to client
+  });
+  socket.on('light', function(data) { //get light switch status from client
+    lightvalue = data;
+    leds.forEach((l,e) => {
+      console.log(l);
+      if (lightvalue != l.readSync()) { //only change LED if status has changed
+        l.writeSync(lightvalue); //turn LED on or off
+      }
+    });
+  });
+});
 
 process.on('SIGINT', function () { //on ctrl+c
   leds.forEach((l,e) => {
