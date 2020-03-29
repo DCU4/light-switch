@@ -21,9 +21,6 @@
 
 
 var server = require('http').createServer(handler); //require http server, and create server with function handler()
-server.listen(process.env.PORT || 3000, function(){
-  console.log('Server started',process.env.PORT );
-});
 var io = require('socket.io').listen(server);//require socket.io module and pass the http object (server)
 // const io = socketIO(server);
 var fs = require('fs'); //require filesystem module
@@ -35,7 +32,9 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 var leds = [LED04, LED06];
 var indexCount = 0; //a counter
 
-
+server.listen(process.env.PORT || 3000, function(){
+  console.log('Server started',process.env.PORT );
+});
 
 
 // server.listen(process.env.PORT || 3000);
