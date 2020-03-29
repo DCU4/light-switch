@@ -1,0 +1,15 @@
+{
+  "name": "lightswitch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Dylan Connor",
+  "license": "ISC",
+  "devDependencies": {
+    "onoff": "^5.0.1",
+    "socket.io": "^2.3.0"
+  }
+}
