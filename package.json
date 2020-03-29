@@ -8,7 +8,7 @@
   },
   "author": "Dylan Connor",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "onoff": "^5.0.1",
     "socket.io": "^2.3.0"
   }
