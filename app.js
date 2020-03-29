@@ -17,7 +17,7 @@
 
 
 
-var http = require('http').createServer(handler); //require http server, and create server with function handler()
+var http = require('https').createServer(handler); //require http server, and create server with function handler()
 var fs = require('fs'); //require filesystem module
 var io = require('socket.io')(http) //require socket.io module and pass the http object (server)
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
@@ -73,6 +73,6 @@ process.on('SIGINT', function () { //on ctrl+c
 });
 
 
-app.listen(process.env.PORT, function(){
+http.listen(process.env.PORT, function(){
   console.log('Server started');
 });
