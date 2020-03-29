@@ -28,6 +28,12 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 var leds = [LED04, LED06];
 var indexCount = 0; //a counter
 
+http.listen(process.env.PORT || 3000, function(){
+  console.log('Server started');
+});
+
+
+// server.listen(process.env.PORT || 3000);
 // http.listen(8080); //listen to port 8080
 
 function handler (req, res) { //create server
@@ -72,7 +78,3 @@ process.on('SIGINT', function () { //on ctrl+c
   });
 });
 
-
-http.listen(process.env.PORT, function(){
-  console.log('Server started');
-});
