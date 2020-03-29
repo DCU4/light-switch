@@ -1,28 +1,5 @@
-
-// pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton GPIO, specify callback function
-//   if (err) { //if an error
-//     console.error('There was an error', err); //output error message to console
-//   return;
-//   }
-//   LED.writeSync(value); //turn LED on or off depending on the button state (0 or 1)
-// });
-
-// function unexportOnClose() { //function to run when exiting program
-//   LED.writeSync(0); // Turn LED off
-//   LED.unexport(); // Unexport LED GPIO to free resources
-//   pushButton.unexport(); // Unexport Button GPIO to free resources
-// };
-
-// process.on('SIGINT', unexportOnClose); //function to run when user closes using ctrl+c
-
-
-// var server = require('http').createServer(app);
-//     var io = require('socket.io').listen(server);
-
-
 var server = require('http').createServer(handler); //require http server, and create server with function handler()
 var io = require('socket.io').listen(server);//require socket.io module and pass the http object (server)
-// const io = socketIO(server);
 var fs = require('fs'); //require filesystem module
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED04 = new Gpio(4, 'out'); //use GPIO pin 4 as output
