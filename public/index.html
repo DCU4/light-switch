@@ -85,7 +85,8 @@
 <script src="https://light-switch-dc.herokuapp.com:13154/socket.io/socket.io.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> include socket.io client side script -->
 <script>
-var socket = io.connect('https://light-switch-dc.herokuapp.com:13154'); //load socket.io-client and connect to the host that serves the page
+// var socket = io.connect('https://light-switch-dc.herokuapp.com:13154'); //load socket.io-client and connect to the host that serves the page
+var socket = io('')
 window.addEventListener("load", function(){ //when page loads
   var lightbox = document.getElementById("light");
   lightbox.addEventListener("change", function() { //add event listener for when checkbox changes
