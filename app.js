@@ -22,7 +22,7 @@
 
 var server = require('http').createServer(handler); //require http server, and create server with function handler()
 var fs = require('fs'); //require filesystem module
-var io = socketIO(server);//require socket.io module and pass the http object (server)
+var io = require('socket.io').listen(server);//require socket.io module and pass the http object (server)
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED04 = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var LED06 = new Gpio(6, 'out'); //use GPIO pin 4 as output
