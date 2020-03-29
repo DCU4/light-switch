@@ -20,9 +20,9 @@
 //     var io = require('socket.io').listen(server);
 
 
-var http = require('http').createServer(handler); //require http server, and create server with function handler()
+var server = require('http').createServer(handler); //require http server, and create server with function handler()
 var fs = require('fs'); //require filesystem module
-var io = require('socket.io').listen(http);//require socket.io module and pass the http object (server)
+var io = socketIO(server);//require socket.io module and pass the http object (server)
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var LED04 = new Gpio(4, 'out'); //use GPIO pin 4 as output
 var LED06 = new Gpio(6, 'out'); //use GPIO pin 4 as output
@@ -31,7 +31,7 @@ var pushButton = new Gpio(17, 'in', 'both'); //use GPIO pin 17 as input, and 'bo
 var leds = [LED04, LED06];
 var indexCount = 0; //a counter
 
-http.listen(process.env.PORT || 3000, function(){
+server.listen(process.env.PORT || 3000, function(){
   console.log('Server started');
 });
 
